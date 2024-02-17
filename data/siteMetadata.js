@@ -1,24 +1,20 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Next.js Starter Blog',
-  author: 'Tails Azimuth',
-  headerTitle: 'TailwindBlog',
-  description: 'A blog created with Next.js and Tailwind.css',
+  title: 'Pyae Phyo Win',
+  author: 'Pyae Phyo Win',
+  headerTitle: 'Frontend Developer',
+  description: 'A frontend developer blog with Next.js and Tailwind CSS.',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
+  siteUrl: 'https://pyaephyowin.vercel.app',
   siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',
   mastodon: 'https://mastodon.social/@mastodonuser',
-  email: 'address@yoursite.com',
-  github: 'https://github.com',
-  twitter: 'https://twitter.com/Twitter',
-  facebook: 'https://facebook.com',
-  youtube: 'https://youtube.com',
-  linkedin: 'https://www.linkedin.com',
-  threads: 'https://www.threads.net',
-  instagram: 'https://www.instagram.com',
+  email: 'pyaephyowin.dev@gmail.com',
+  github: 'https://github.com/pyaephyowinn',
+  twitter: 'https://twitter.com/PyaePhyoWi57324',
+  linkedin: 'https://www.linkedin.com/in/pyae-phyo-win-762792246/',
   locale: 'en-US',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
