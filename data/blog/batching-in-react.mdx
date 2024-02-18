@@ -3,7 +3,7 @@ title: Batching in React
 date: '2024-1-08'
 tags: ['react', 'web']
 draft: false
-summary: Example of a markdown file with code blocks and syntax highlighting
+summary: Explore how React optimizes performance through batching state updates, alongside techniques for enforcing immediate re-renders when necessary
 ---
 
 ## Introduction
@@ -34,7 +34,7 @@ In the above component named `Counter`, when you click the button, `setCount(cou
 
 ## Understanding Batching
 
-Batching in React actually occurs when you update multiple state in a single operation task or event handler. For example,
+Batching in React occurs when multiple state updates are performed within a single operation or event handler. For example:
 
 ```javascript
 import { useState } from 'react'
@@ -66,8 +66,7 @@ When you click the button, react won't re-render for each `setState()` instead R
 
 ## Forcing React to re-render
 
-However, You may sometimes want react to re-render for each `setState()`.
-For example, when you try to add new comment and scroll into latest comments:
+Sometimes, you may want React to re-render for each `setState()` call. For instance, when adding a new comment and scrolling to the latest comments:
 
 ```
 import { useState } from 'react'
@@ -90,9 +89,9 @@ export function Comments() {
 }
 ```
 
-In the above components, clicking the button won't scroll into the latest comments because react have not immediately re-rendered to update DOM for `setComments([...comments, 'new comment'])`. How can we solve the following problem?
+In the above component, clicking the button doesn't scroll to the latest comments immediately because React hasn't re-rendered to update the DOM for `setComments([...comments, 'new comment'])`. How can we address this issue?
 
-The `flushSync()` let you force React to render to update DOM for every state changes by wrapping with `flushSync()` function.
+The `flushSync()` function allows you to force React to re-render and update the DOM for every state change by wrapping it around the setState callback:
 
 ```javascript
 import { useState } from 'react'
@@ -117,6 +116,6 @@ export function Comments() {
 
 ```
 
-When you wrap the `setState` callback with `flushSync()`, it tells React to **_re-render immediately_** for the changes to update DOM and you will get scrollIntoLastComment() works with the updated DOM.
+Wrapping the `setState` callback with `flushSync()` instructs React to re-render immediately, updating the DOM and allowing `scrollIntoLastComment()` to work with the updated DOM.
 
-> Using flushSync is uncommon and can hurt the performance of your app.
+> Note: Using flushSync is uncommon and can impact the performance of your app.

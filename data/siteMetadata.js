@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'Pyae Phyo Win',
   author: 'Pyae Phyo Win',
   headerTitle: 'Frontend Developer',
-  description: 'A frontend developer blog with Next.js and Tailwind CSS.',
+  description: 'A frontend developer blog',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://pyaephyowin.vercel.app',
