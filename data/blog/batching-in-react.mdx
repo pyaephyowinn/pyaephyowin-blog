@@ -1,0 +1,122 @@
+---
+title: Batching in React
+date: '2024-1-08'
+tags: ['react', 'web']
+draft: false
+summary: Example of a markdown file with code blocks and syntax highlighting
+---
+
+## Introduction
+
+React.js is highly favored by numerous developers for building dynamic user interfaces due to its Component-Based Architecture, Virtual DOM, Declarative Syntax, and other advantages. However, it can be challenging to manage re-renders, especially with multiple state updates. In this article, you can read about how React.js handles those state updates to improve performance by reducing re-renders.
+
+<TOCInline toc={props.toc} exclude="Introduction" />
+
+## State in React
+
+State, known as a component's memory, can be used to keep tracks of changes and apply the changes to the interfaces after user interactions like clicking the button, typing into the form and etc.
+
+State can be defined with `useState()` hook.
+
+```javascript
+export default function Counter() {
+  const [count, setCount] = useState(0)
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  )
+}
+```
+
+In the above component named `Counter`, when you click the button, `setCount(count + 1)` updates the count by 1 and tells the React to re-render the UI.
+
+## Understanding Batching
+
+Batching in React actually occurs when you update multiple state in a single operation task or event handler. For example,
+
+```javascript
+import { useState } from 'react'
+
+export function Profile = () => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [city, setCity] = useState('')
+
+  return (
+    <div>
+      <button
+        onClick={() => {
+          setName('alice')
+          setEmail('alice@qq.com')
+          setCity('beijing')
+        }}
+      >
+        set profile
+      </button>
+    </div>
+  )
+}
+```
+
+When you click the button, react won't re-render for each `setState()` instead React will group groups multiple state updates into a single re-render for better performance.
+
+> Before React 18, we only batched updates inside React event handlers. Updates inside of promises, setTimeout, native event handlers, or any other event were not batched in React by default:
+
+## Forcing React to re-render
+
+However, You may sometimes want react to re-render for each `setState()`.
+For example, when you try to add new comment and scroll into latest comments:
+
+```
+import { useState } from 'react'
+
+export function Comments() {
+  const [comments, setComments] = useState<string[]>([])
+
+  return (
+    <div>
+      <button
+        onClick={() => {
+          setComments([...comments, 'new comment'])
+          scrollIntoLastComment()
+        }}
+      >
+        Add comment
+      </button>
+    </div>
+  )
+}
+```
+
+In the above components, clicking the button won't scroll into the latest comments because react have not immediately re-rendered to update DOM for `setComments([...comments, 'new comment'])`. How can we solve the following problem?
+
+The `flushSync()` let you force React to render to update DOM for every state changes by wrapping with `flushSync()` function.
+
+```javascript
+import { useState } from 'react'
+import { flushSync } from 'react-dom'
+
+export function Comments() {
+  const [comments, setComments] = useState<string[]>([])
+
+  return (
+    <div>
+      <button
+        onClick={() => {
+          flushSync(setComments([...comments, 'new comment']))
+          scrollIntoLastComment()
+        }}
+      >
+        Add comment
+      </button>
+    </div>
+  )
+}
+
+```
+
+When you wrap the `setState` callback with `flushSync()`, it tells React to **_re-render immediately_** for the changes to update DOM and you will get scrollIntoLastComment() works with the updated DOM.
+
+> Using flushSync is uncommon and can hurt the performance of your app.
