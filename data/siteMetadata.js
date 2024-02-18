@@ -9,7 +9,7 @@ const siteMetadata = {
   siteUrl: 'https://pyaephyowin.vercel.app',
   siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
   siteLogo: '/static/images/logo.png',
-  socialBanner: '/static/images/twitter-card.png',
+  socialBanner: '/static/images/twitter-card.jpg',
   mastodon: 'https://mastodon.social/@mastodonuser',
   email: 'pyaephyowin.dev@gmail.com',
   github: 'https://github.com/pyaephyowinn',
