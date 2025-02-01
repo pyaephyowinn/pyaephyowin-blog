@@ -2,8 +2,8 @@
 const siteMetadata = {
   title: 'Pyae Phyo Win',
   author: 'Pyae Phyo Win',
-  headerTitle: 'Frontend Developer',
-  description: 'A frontend developer blog',
+  headerTitle: 'Full Stack Developer',
+  description: "A full stack developer's blog",
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://pyaephyowin.vercel.app',
